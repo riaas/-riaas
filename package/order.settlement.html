@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<title>结算</title>
+<link rel="shortcut icon" href="favicon.ico" />
+<link type="text/css" rel="stylesheet" href="css/comm.css" />
+<link type="text/css" rel="stylesheet" href="css/LArea.min.css" />
+</head>
+
+<body>
+<div class="wenr-address-select address arrow" onclick="wenrAddressSelect('order.address.html','')">
+    <div class="clr w-a-s-hd">
+        <div class="fl" id="wenrAddressName">收货人：张大师</div>
+        <div class="fr" id="wenrAddressPhone">13684874583</div>
+    </div>
+    <div class="w-a-s-bd" id="wenrAddressAddress">收货地址：湖南省长沙高新区麓云路麓云路100号兴工科技园</div>
+</div>
+<div class="wenr-address-lump"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+<div class="wenr-lines">
+    <div class="clr wenr-prod-show">
+        <div class="fl w-p-s-photo directly"><span><img src="img/20170222684111.jpg"></span></div>
+        <div class="fl w-p-s-info">
+            <span class="info-title f-14 lh-16">全套垂钓装备鱼杆特价 鱼竿 鱼钩 鱼漂 鱼线 轮 </span>
+            <div class="info-select f-14 mt-05 c-gray">黑色经典款</div>
+            <div class="clr info-price f-16 mt-10">
+                <div class="fl c-orange">￥325</div>
+                <div class="fr c-gray">x 1</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="wenr-modules mt-10">
+    <div class="wenr-lines wner-rma">
+        <div class="wner-rma-hd">
+            <div class="wenr-line-b">
+                <div class="fl">选择搭配商品</div>
+                <div class="fr c-gray">已选 <span id="wenrOrderRmaNumber">0</span> 件，共计 <span id="wenrOrderRmaPrice" class="c-orange">0.00</span> 元</div>
+            </div>
+        </div>
+        <div class="clr wner-rma-list">
+            <div class="w-r-l-item">
+                <div class="w-r-l-photo directly"><span><img src="img/20170222684111.jpg"></span></div>
+                <div class="f-14 w-r-l-title">通电绿光咬钩变红单个装..</div>
+                <div class="clr">
+                    <div class="fl w-r-l-price c-orange f-16">￥10</div>
+                    <div class="fr">
+                        <ul class="w-r-l-number">
+                            <li class="number-minus numberBtn"></li>
+                            <li class="number-text" data-price="10">0</li>
+                            <li class="number-add numberBtn"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="w-r-l-item">
+                <div class="w-r-l-photo directly"><span><img src="img/20170222684115.jpg"></span></div>
+                <div class="w-r-l-title">荧光手研版双个装</div>
+                <div class="clr">
+                    <div class="fl w-r-l-price c-orange f-16">￥16</div>
+                    <div class="fr">
+                        <ul class="w-r-l-number">
+                            <li class="number-minus numberBtn"></li>
+                            <li class="number-text" data-price="16">0</li>
+                            <li class="number-add numberBtn"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wenr-lines wner-form-text"><input type="text" class="t-default" placeholder="备注：给商家留言（45字以内）"></div>
+    <div class="wenr-lines">
+        <div class="wenr-list">
+            <div class="wenr-m-left">商品金额</div>
+            <div class="wenr-m-right">￥325</div>
+        </div>
+        <div class="wenr-list">
+            <div class="wenr-m-left">搭配商品</div>
+            <div class="wenr-m-right">￥<span id="wenrOrderAdditional_html">0.00</span></div>
+        </div>
+        <div class="wenr-list">
+            <div class="wenr-m-left">运费金额</div>
+            <div class="wenr-m-right">￥5</div>
+        </div>
+    </div>
+</div>
+<div class="wenr-bd">
+    <div class="wenr-float-btn wenr-order-bd">
+        <div class="fl w-o-b-info">
+            <div class="c-orange f-16">总计：￥<span id="wenrOrderAmount_html">330.00</span></div>
+            <div>立返293元</div>
+        </div>
+        <div class="fr w-o-b-btn"><a href="order.list.html" class="b-default bg-orange">微信支付</a></div>
+    </div>
+</div>
+<input id="wenrOrderAmount" type="hidden" value="330"><!--结算总价-->
+<input id="wenrOrderUnitprice" type="hidden" value="325"><!--商品金额-->
+<input id="wenrOrderCarriage" type="hidden" value="5"><!--运费-->
+<input id="wenrOrderAdditional" type="hidden" value="0"><!--搭配商品金额-->
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/share.js"></script>
+<script type="text/javascript">
+window.onload = function(){
+    history.replaceState(null,'',location.pathname+location.search);
+}
+window.onhashchange=function(){
+    var $url = window.location.hash;
+    var pattern = "#";
+    $url = $url.replace(new RegExp(pattern), "");
+    if($url == ""){
+        $("#addRessAddHtml").remove()
+        $(".wenr-popup-right,.wenr-c-address-add,.wenr-address-map").removeClass("play").fadeOut(200,function(){
+            $(this).remove()
+            $("html,body").removeClass("on");
+            history.replaceState(null,'',location.pathname+location.search);
+        });
+    }else if($url == "addresSelect"){
+        $(".wenr-address-add").removeClass("play").fadeOut(200);
+    }
+}
+</script>
+</body>
+</html>

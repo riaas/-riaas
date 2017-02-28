@@ -1,0 +1,99 @@
+<div class="wenr-popup-right wenr-time wenr-r">
+    <div class="wenr-address">
+        <div id="wenrAddressSelect" class="wenr-lines wenr-address-list">
+            <ul>
+                <li class="select">
+                    <div class="w-a-l-hd"><span class="w-a-name">张大师</span><span class="w-a-phone">13684874583</span></div>
+                    <div class="w-a-l-bd w-a-address">湖南省长沙高新区麓云路麓云路100号兴工科技园</div>
+                </li>
+                <li>
+                    <div class="w-a-l-hd"><span class="w-a-name">刘方胜</span><span class="w-a-phone">15865487484</span></div>
+                    <div class="w-a-l-bd w-a-address">长沙高新区麓云路麓云路100号兴工科技园</div>
+                </li>
+                <li>
+                    <div class="w-a-l-hd"><span class="w-a-name">马丽娜</span><span class="w-a-phone">16865487954</span></div>
+                    <div class="w-a-l-bd w-a-address">湖南省长沙高新区麓云路麓云路100号</div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="wenr-address-addbtn"><a href="javascript:;" class="bg-orange" onclick="wenrAddressAdd()">新增收货地址</a></div>
+    <div class="wenr-address-add wenr-time wenr-r">
+        <div class="wenr-lines">
+            <div class="wner-form-text"><input type="text" name="wenrAddressAddName" class="t-default" placeholder="收货人姓名"></div>
+            <div class="wenr-line-t wner-form-text"><input type="tel" name="wenrAddressAddPhone" class="t-default" maxlength="11" placeholder="联系电话"></div>
+            <div class="wenr-line-t wner-form-text select-arrow"><input type="text" readonly="" id="wenrAddressAddCity" class="t-default" placeholder="省、市、区"></div>
+            <div class="wenr-line-t wner-form-text"><textarea class="ta-default" name="wenrAddressAddDetailed" placeholder="详细地址" rows="3" value=""></textarea></div>
+        </div>
+        <div class="p-15"><a href="javascript:;" id="wenrAddressAddBtn" class="b-default bg-orange c-white">保存并使用</a></div>
+    </div>
+    <script type="text/javascript" src="js/LArea.min.js"></script>
+    <script type="text/javascript" src="js/LAreaData.js"></script>
+    <script>
+    $(function(){
+        var prompt = $(".wenr-address-add-prompt"),
+            w_a_a_name = $("input[name='wenrAddressAddName']"),//联系人
+            w_a_a_phone = $("input[name='wenrAddressAddPhone']"),//手机号码
+            w_a_a_city = $("input[id='wenrAddressAddCity']"),//城市
+            w_a_a_detailed = $("textarea[name='wenrAddressAddDetailed']"),//详细地址
+            w_a_n_hmlt = $("#wenrAddressName"),//联系人显示更换
+            w_a_p_hmlt = $("#wenrAddressPhone"),//手机号码显示更换
+            w_a_a_hmlt = $("#wenrAddressAddress");//地址显示更换
+        
+        var addressArea = new LArea();
+        addressArea.init({
+            'trigger': '#wenrAddressAddCity', //触发选择控件的文本框，同时选择完毕后name属性输出到该位置
+            'keys': {
+                id: 'id',
+                name: 'name'
+            }, //绑定数据源相关字段 id对应valueTo的value属性输出 name对应trigger的value属性输出
+            'type': 1, //数据源类型
+            'data': LAreaData //数据源
+        });
+        $(document).on("click","#wenrAddressAddBtn",function(){
+            if(w_a_a_name.val() == ""){
+                $.wenrAlert({
+                    text:"收货人姓名不能为空"
+                })
+                return false;
+            }else if(w_a_a_phone.val() == ""){
+                $.wenrAlert({
+                    text:"手机号码不能为空"
+                })
+                return false;
+            }else if(!regexp(w_a_a_phone.val(),"mobile")){
+                $.wenrAlert({
+                    text:"手机号码格式不正确"
+                })
+                return false;
+            }else if(w_a_a_city.val() == ""){
+                $.wenrAlert({
+                    text:"请选择省份城市"
+                })
+                return false;
+            }
+            else if(w_a_a_detailed.val() == ""){
+                $.wenrAlert({
+                    text:"详细地址不能为空"
+                })
+                return false;
+            }
+            var w_city_str = w_a_a_city.val()
+            wenrAddressShow(w_a_a_name.val(),w_a_a_phone.val(),(w_city_str.replace(/,/g,'')+w_a_a_detailed.val()))
+        })
+        $(".wenr-popup-right").on("click","#wenrAddressSelect li",function(){
+            var w_a_name = $(this).find(".w-a-name").text(),
+                w_a_phone = $(this).find(".w-a-phone").text(),
+                w_a_address = $(this).find(".w-a-address").text();
+            $(this).addClass("select").siblings().removeClass("select")
+            wenrAddressShow(w_a_name,w_a_phone,w_a_address)
+        })
+        wenrAddressShow = function(name,phone,address){
+            setTimeout(function(){wenrHash("");},200);
+            w_a_n_hmlt.text("收货人："+ name);
+            w_a_p_hmlt.text(phone)
+            w_a_a_hmlt.text("收货地址："+address)
+        }
+    })
+    </script>
+</div>

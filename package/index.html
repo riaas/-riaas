@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<title>威娜钓具套装</title>
+<link rel="shortcut icon" href="favicon.ico" />
+<link type="text/css" rel="stylesheet" href="css/comm.css" />
+</head>
+
+<body>
+<div class="wenr-bd">
+    <div class="wenr-float-btn"><a href="javascript:;" class="b-default bg-orange" onclick="wenrProdItem()">立即购买</a></div>
+</div>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/share.js"></script>
+<div class="wenr-item-choose wenr-b wenr-time">
+    <div class="w-i-c-hd">
+        <div class="fl w-i-c-photo directly"><span><img src="img/20170222684111.jpg"></span></div>
+        <div class="fl w-i-c-info">
+            <span class="info-title f-14 lh-16">全套垂钓装备鱼杆特价 鱼竿 鱼钩 鱼漂 鱼线 轮 </span>
+            <div class="info-price f-16 mt-05">￥<span id="wenrProdPrice">325</span></div>
+            <div class="info-select f-14 mt-05 c-gray">已选：<span id="wenrProdItem">黑色经典款</span></div>
+        </div>
+        <div class="w-i-c-close" onclick="wenrProdItem()"></div>
+    </div>
+    <div id="wenrProdItemSelect" class="clr w-i-c-select">
+        <a href="javascript:;" class="select" data-title="黑色经典款" data-price="325" data-number="1" data-amount="325">黑色经典款</a>
+        <a href="javascript:;" data-title="白色" data-price="315" data-number="1"  data-amount="315">白色</a>
+        <a href="javascript:;" data-title="蓝色" data-price="350" data-number="1"  data-amount="350">蓝色</a>
+    </div>
+    <div class="wenr-line-t w-i-c-number">
+        <span class="number-title fl f-14">购买数量</span>
+        <div class="fr">
+            <ul class="number-choose">
+                <li id="wenrProdNminus" class="btn-minus"></li>
+                <li><input id="wnerProdNtext" class="text-number" type="tel" data-max="5" value="1"><input id="wnerProdNamount" type="hidden" value="325"></li>
+                <li id="wenrProdNadd" class="btn-add"></li>
+            </ul>
+        </div>
+    </div>
+    <div class="wenr-bd">
+        <div class="wenr-float-btn"><a href="order.settlement.html" class="b-default bg-orange">确定</a></div>
+    </div>
+</div>
+</body>
+</html>
